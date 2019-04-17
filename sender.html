@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+      <video src="" id='local' autoplay></video>
+      <video src="" id='remote' autoplay></video>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.18/peer.min.js"></script>
+      <script>
+          const peer = new Peer('sender', { 
+              debug: 2
+            })
+          const startChat = async () => {
+              const localStream = await navigator.mediaDevices.getUserMedia({
+                video: true
+              })
+              document.querySelector('video#local').srcObject = localStream
+              const call = peer.call('receiver', localStream)
+              call.on('stream', remoteStream => {
+                document.querySelector('video#remote').srcObject = remoteStream
+              })
+            }
+
+          startChat()
+        </script>
+</body>
+</html>
