@@ -12,7 +12,9 @@
 
       <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.18/peer.min.js"></script>
       <script>
-        const peer = new Peer('sender', { host: 'localhost', port: 9000, path: '/' })
+        const peer = new Peer('sender', { 
+            debug:2
+         })
           const startChat = async () => {
               const localStream = await navigator.mediaDevices.getUserMedia({
                 video: true
