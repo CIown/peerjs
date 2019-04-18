@@ -11,12 +11,7 @@
     <video src="" id='remote' autoplay></video>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.18/peer.min.js"></script>
     <script>
-        const peer = new Peer('receiver', { 
-            debug: 2,
-            config: {'iceServers': [
-                {url: "turn:192.168.28.1:3478",zhangqidi:"lantianlan9"}
-            ]}
-         })
+        const peer = new Peer('receiver', { host: 'localhost', port: 9000, path: '/' })
         peer.on('call', call => {
             const startChat = async () => {
                 const localStream = await navigator.mediaDevices.getUserMedia({
